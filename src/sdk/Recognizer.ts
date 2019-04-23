@@ -92,6 +92,26 @@ export abstract class Recognizer {
     }
 
     /**
+     * Mutes audio input.
+     * @member Recognizer.prototype.mute
+     * @function
+     * @public
+     */
+    public mute(): void {
+        this.audioConfig.mute();
+    }
+
+    /**
+     * Unmutes audio input.
+     * @member Recognizer.prototype.unmute
+     * @function
+     * @public
+     */
+    public unmute(): void {
+        this.audioConfig.unmute();
+    }
+
+    /**
      * @Internal
      * Internal data member to support fromRecognizer* pattern methods on other classes.
      * Do not use externally, object returned will change without warning or notive.

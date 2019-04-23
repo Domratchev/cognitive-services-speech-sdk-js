@@ -19,6 +19,8 @@ export interface IAudioSource {
     deviceInfo: Promise<ISpeechConfigAudioDevice>;
     setProperty?(name: string, value: string): void;
     getProperty?(name: string, def?: string): string;
+    mute(): void;
+    unmute(): void;
 }
 
 export interface IAudioStreamNode extends IDetachable {
