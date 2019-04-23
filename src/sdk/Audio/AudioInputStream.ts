@@ -231,6 +231,14 @@ export class PushAudioInputStreamImpl extends PushAudioInputStream implements IA
         });
     }
 
+    public mute(): void {
+        throw new Error("Not implemented");
+    }
+
+    public unmute(): void {
+        throw new Error("Not implemented");
+    }
+
     private onEvent = (event: AudioSourceEvent): void => {
         this.privEvents.onEvent(event);
         Events.instance.onEvent(event);
@@ -409,6 +417,14 @@ export class PullAudioInputStreamImpl extends PullAudioInputStream implements IA
             samplerate: this.privFormat.samplesPerSec,
             type: type.Stream,
         });
+    }
+
+    public mute(): void {
+        throw new Error("Not implemented");
+    }
+
+    public unmute(): void {
+        throw new Error("Not implemented");
     }
 
     private onEvent = (event: AudioSourceEvent): void => {

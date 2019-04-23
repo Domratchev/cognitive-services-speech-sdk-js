@@ -103,6 +103,22 @@ export abstract class AudioConfig {
      * @returns {string} The current value, or provided default, of the given property.
      */
     public abstract getProperty(name: string, def?: string): string;
+
+    /**
+     * Mutes audio input.
+     * @member AudioConfig.prototype.mute
+     * @function
+     * @public
+     */
+    public abstract mute(): void;
+
+    /**
+     * Unmutes audio input.
+     * @member AudioConfig.prototype.unmute
+     * @function
+     * @public
+     */
+    public abstract unmute(): void;
 }
 
 /**
@@ -223,5 +239,13 @@ export class AudioConfigImpl extends AudioConfig implements IAudioSource {
 
     public get deviceInfo(): Promise<ISpeechConfigAudioDevice> {
         return this.privSource.deviceInfo;
+    }
+
+    public mute(): void {
+        this.privSource.mute();
+    }
+
+    public unmute(): void {
+        this.privSource.unmute();
     }
 }
