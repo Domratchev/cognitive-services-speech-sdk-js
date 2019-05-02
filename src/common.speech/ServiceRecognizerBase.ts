@@ -150,6 +150,11 @@ export abstract class ServiceRecognizerBase implements IDisposable {
         this.privRequestSession.startNewRecognition();
         this.privRequestSession.listenForServiceTelemetry(this.privAudioSource.events);
 
+        // Get the connection started in parallel with the audio attach.
+        // We don't need the return value here as the call below to configureConnection() will wait on the
+        // private promise connectImpl() will create.
+        this.connectImpl();
+
         try {
             const audioStreamNode = await this.audioSource.attach(this.privRequestSession.audioNodeId);
             const audioNode = new ReplayableAudioNode(audioStreamNode, (this.audioSource.format as AudioStreamFormatImpl));
@@ -191,7 +196,7 @@ export abstract class ServiceRecognizerBase implements IDisposable {
         if (this.privRequestSession.isRecognizing) {
             this.privRequestSession.onStopRecognizing();
             this.sendTelemetryData();
-            this.audioSource.turnOff();
+            this.audioSource.detach(this.privRequestSession.audioNodeId);
             this.sendFinalAudio();
             this.privRequestSession.dispose();
         }
