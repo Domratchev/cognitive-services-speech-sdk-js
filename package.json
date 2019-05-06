@@ -2,7 +2,7 @@
   "name": "microsoft-cognitiveservices-speech-sdk",
   "author": "Microsoft Corporation",
   "homepage": "https://docs.microsoft.com/azure/cognitive-services/speech-service/",
-  "version": "1.5.0-alpha.0.1",
+  "version": "1.6.0-alpha.0.1",
   "license": "MIT",
   "description": "Microsoft Cognitive Services Speech SDK for JavaScript",
   "keywords": [
@@ -56,7 +56,7 @@
     "semver": "^5.6.0",
     "source-map-loader": "^0.2.3",
     "ts-jest": "^23.10.5",
-    "tslint": "^5.11.0",
+    "tslint": "^5.16.0",
     "typescript": "^3.2.1",
     "webpack-stream": "^4.0.0"
   },
