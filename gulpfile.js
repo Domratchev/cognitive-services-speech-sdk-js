@@ -25,6 +25,7 @@
       .pipe(sourcemaps.init())
       .pipe(ts({
         module: 'es2015',
+        moduleResolution: 'node',
         target: 'es2015',
         declaration: true,
         noImplicitAny: true,
@@ -50,6 +51,7 @@
       .pipe(sourcemaps.init())
       .pipe(ts({
         module: 'commonjs',
+        moduleResolution: 'node',
         target: 'es2015',
         declaration: true,
         noImplicitAny: true,
