@@ -194,9 +194,9 @@ export abstract class ServiceRecognizerBase implements IDisposable {
 
     public stopRecognizing(): void {
         if (this.privRequestSession.isRecognizing) {
+            this.audioSource.detach(this.privRequestSession.audioNodeId);
             this.privRequestSession.onStopRecognizing();
             this.sendTelemetryData();
-            this.audioSource.detach(this.privRequestSession.audioNodeId);
             this.sendFinalAudio();
             this.privRequestSession.dispose();
         }

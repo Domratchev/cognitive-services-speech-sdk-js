@@ -167,11 +167,15 @@ export class MicAudioSource implements IAudioSource {
             },
             read: () => {
                 return streamReader.read();
-            },
+            }
         };
     }
 
     public detach = (audioNodeId: string): void => {
+        if (Object.keys(this.privStreams)) {
+            this.mute();
+        }
+
         if (audioNodeId && this.privStreams[audioNodeId]) {
             this.privStreams[audioNodeId].close();
             delete this.privStreams[audioNodeId];
@@ -223,6 +227,24 @@ export class MicAudioSource implements IAudioSource {
         }
     }
 
+    public mute(): void {
+        if (this.privMediaStream) {
+            const tracks = this.privMediaStream.getAudioTracks();
+            if (tracks && tracks[0]) {
+                tracks[0].enabled = false;
+            }
+        }
+    }
+
+    public unmute(): void {
+        if (this.privMediaStream) {
+            const tracks = this.privMediaStream.getAudioTracks();
+            if (tracks && tracks[0]) {
+                tracks[0].enabled = true;
+            }
+        }
+    }
+
     private getMicrophoneLabel(): Promise<string> {
         const defaultMicrophoneName: string = "microphone";
 
@@ -266,14 +288,19 @@ export class MicAudioSource implements IAudioSource {
 
     private listen = async (audioNodeId: string): Promise<StreamReader<ArrayBuffer>> => {
         const _ = await this.turnOn();
+
+        this.unmute();
+
         const stream = new ChunkedArrayBufferStream(this.privOutputChunkSize, audioNodeId);
         this.privStreams[audioNodeId] = stream;
+
         try {
             this.privRecorder.record(this.privContext, this.privMediaStream, stream);
         } catch (error) {
             this.onEvent(new AudioStreamNodeErrorEvent(this.privId, audioNodeId, error));
             throw error;
         }
+
         return stream.getReader();
     }
 
