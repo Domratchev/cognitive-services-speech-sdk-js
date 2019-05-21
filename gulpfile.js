@@ -52,7 +52,7 @@
       .pipe(ts({
         module: 'commonjs',
         moduleResolution: 'node',
-        target: 'es2015',
+        target: 'es5',
         declaration: true,
         noImplicitAny: true,
         removeComments: false,
@@ -72,7 +72,7 @@
             enforce: 'pre',
             test: /\.js$/,
             loader: 'source-map-loader'
-          }],
+          }]
         },
         plugins: [
           new dtsBundleWebpack({

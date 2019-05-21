@@ -29,7 +29,7 @@
     "https-proxy-agent": false
   },
   "main": "distrib/lib/microsoft.cognitiveservices.speech.sdk.js",
-  "module": "distrib/es2015/microsoft.cognitiveservices.speech.sdk.js",
+  "module": "distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle.js",
   "types": "distrib/lib/microsoft.cognitiveservices.speech.sdk.d.ts",
   "files": [
     "distrib/lib/**/*",
