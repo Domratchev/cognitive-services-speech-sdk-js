@@ -93,18 +93,6 @@ export class SpeechServiceConfig {
 }
 
 // tslint:disable-next-line:max-classes-per-file
-export class Context {
-    public system: System;
-    public os: OS;
-    public audio: ISpeechConfigAudio;
-
-    constructor(os: OS) {
-        this.system = new System();
-        this.os = os;
-    }
-}
-
-// tslint:disable-next-line:max-classes-per-file
 export class System {
     public name: string;
     public version: string;
@@ -119,6 +107,18 @@ export class System {
         this.version = SPEECHSDK_CLIENTSDK_VERSION;
         this.build = "JavaScript";
         this.lang = "JavaScript";
+    }
+}
+
+// tslint:disable-next-line:max-classes-per-file
+export class Context {
+    public system: System;
+    public os: OS;
+    public audio: ISpeechConfigAudio;
+
+    constructor(os: OS) {
+        this.system = new System();
+        this.os = os;
     }
 }
 
